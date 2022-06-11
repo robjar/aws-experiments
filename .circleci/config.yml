@@ -8,9 +8,11 @@ jobs:
   build:
     docker:
       - image: cimg/node:16.15.1
-    working_directory: ~/src
     steps:
       - checkout
+      - run:
+          name: List assets
+          command: ls -l
       - run:
           name: Install Dependencies
           command: npm install
