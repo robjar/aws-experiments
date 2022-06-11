@@ -4,9 +4,21 @@ orbs:
   aws-ecr: circleci/aws-ecr@8.1.2
   terraform: circleci/terraform@3.1.0
 
+jobs:
+  build:
+    docker:
+      - image: cimg/node:16.15.1
+    working_directory: ~/src
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: npm install
+
 workflows:
   test-tf:
     jobs:
+      - build
 #       - terraform/apply:
 #           checkout: true
 #           path: ./deploy
