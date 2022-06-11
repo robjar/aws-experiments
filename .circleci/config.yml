@@ -41,6 +41,4 @@ workflows:
 #       - terraform/apply:
 #           checkout: true
 #           path: ./deploy
-      - build-and-push-docker-image:
-          requires:
-            - build
+      - build-and-push-docker-image
