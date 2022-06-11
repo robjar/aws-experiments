@@ -35,6 +35,7 @@ jobs:
       - setup_remote_docker:
           version: 20.10.14
       - aws-ecr/build-and-push-image:
+          checkout: false
           repo: test
           registry-id: AWS_ACCOUNT_ID
       
