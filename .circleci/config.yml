@@ -1,0 +1,15 @@
+version: 2.1
+
+orbs:
+  aws-ecr: circleci/aws-ecr@8.1.2
+  terraform: circleci/terraform@3.1.0
+
+workflows:
+  test-tf:
+    jobs:
+#       - terraform/apply:
+#           checkout: true
+#           path: ./deploy
+      - aws-ecr/build-and-push-image:
+          repo: test
+          registry-id: AWS_ACCOUNT_ID
