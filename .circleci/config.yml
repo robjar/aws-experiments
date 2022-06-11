@@ -1,14 +1,17 @@
 version: 2.1
 
+defaults: &defaults
+  docker:
+    - image: cimg/node:16.15.1
+  working_directory: ~/repo
+
 orbs:
   aws-ecr: circleci/aws-ecr@8.1.2
   terraform: circleci/terraform@3.1.0
 
 jobs:
   build:
-    docker:
-      - image: cimg/node:16.15.1
-    working_directory: ~/repo
+    <<: *defaults
     steps:
       - checkout
       - run:
@@ -25,6 +28,7 @@ jobs:
           paths:
             - src
   build-and-push-docker-image:
+    <<: *defaults
     steps:
       - attach_workspace:
           at: ~/repo
