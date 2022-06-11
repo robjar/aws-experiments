@@ -39,11 +39,12 @@ jobs:
           command: pwd
       - run:
           name: List assets
-          command: ls -l
+          command: ls -l && cd circleci && ls -l
       - aws-ecr/build-and-push-image:
           checkout: false
           repo: test
           registry-id: AWS_ACCOUNT_ID
+          workspace-root: /home/circleci/repo
       
 
 workflows:
