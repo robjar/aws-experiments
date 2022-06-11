@@ -36,3 +36,4 @@ workflows:
           context: AWS
           repo: test
           registry-id: AWS_ACCOUNT_ID
+          workspace-root: ~/repo
