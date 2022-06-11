@@ -11,5 +11,6 @@ workflows:
 #           checkout: true
 #           path: ./deploy
       - aws-ecr/build-and-push-image:
+          context: AWS
           repo: test
           registry-id: AWS_ACCOUNT_ID
