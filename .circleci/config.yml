@@ -39,7 +39,7 @@ jobs:
           command: pwd
       - run:
           name: List assets
-          command: ls -l && cd circleci && ls -l
+          command: ls -l
       - aws-ecr/build-and-push-image:
           checkout: false
           repo: test
