@@ -15,7 +15,7 @@ jobs:
           command: ls -l
       - run:
           name: Install Dependencies
-          command: npm install
+          command: cd src && npm install
 
 workflows:
   test-tf:
