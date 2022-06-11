@@ -32,6 +32,8 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
+      - setup_remote_docker:
+          version: 20.10.14
       - aws-ecr/build-and-push-image:
           repo: test
           registry-id: AWS_ACCOUNT_ID
