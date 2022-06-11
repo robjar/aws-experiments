@@ -11,11 +11,18 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Display pwd
+          command: pwd
+      - run:
           name: List assets
           command: ls -l
       - run:
           name: Install Dependencies
           command: cd src && npm install
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - src
 
 workflows:
   test-tf:
