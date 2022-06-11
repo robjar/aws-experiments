@@ -34,7 +34,14 @@ jobs:
           at: ~/repo
       - setup_remote_docker:
           version: 20.10.14
+      - run:
+          name: Display pwd
+          command: pwd
+      - run:
+          name: List assets
+          command: ls -l
       - aws-ecr/build-and-push-image:
+          checkout: false
           repo: test
           registry-id: AWS_ACCOUNT_ID
       
