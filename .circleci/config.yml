@@ -24,7 +24,7 @@ jobs:
           root: ~/repo
           paths:
             - src
-  build-and-push-image:
+  build-and-push-docker-image:
     steps:
       - attach_workspace:
           at: ~/repo
@@ -41,6 +41,6 @@ workflows:
 #       - terraform/apply:
 #           checkout: true
 #           path: ./deploy
-      - build-and-push-image:
+      - build-and-push-docker-image:
           requires:
             - build
