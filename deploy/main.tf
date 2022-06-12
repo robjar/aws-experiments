@@ -80,7 +80,7 @@ resource "aws_lb_target_group" "test-service-target-group" {
     enabled             = true
     healthy_threshold   = 2
     interval            = 30
-    path                = "/"
+    path                = "/health"
     protocol            = "HTTP"
     timeout             = 5
     unhealthy_threshold = 2
