@@ -29,3 +29,35 @@ resource "aws_ecs_task_definition" "test-task-definition" {
   family        = "${var.project-name}-task"
   task_role_arn = ""
 }
+
+resource "aws_ecs_service" "test-service" {
+  cluster                            = "arn:aws:ecs:us-east-1:553652254709:cluster/default"
+  deployment_maximum_percent         = 200
+  deployment_minimum_healthy_percent = 75
+  desired_count                      = 2
+  name                               = "${var.project-name}-srv"
+  task_definition                    = "${aws_ecs_task_definition.test-task-definition.id}:${aws_ecs_task_definition.test-task-definition.revision}"
+
+  load_balancer {
+    container_name   = var.project-name
+    container_port   = 3000
+    target_group_arn = aws_lb_target_group.test-service-target-group.arn
+  }
+}
+
+resource "aws_lb_target_group" "test-service-target-group" {
+  name     = var.project-name
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = var.vpc-id
+
+  health_check {
+    enabled             = true
+    healthy_threshold   = 2
+    interval            = 30
+    path                = "/"
+    protocol            = "HTTP"
+    timeout             = 5
+    unhealthy_threshold = 2
+  }
+}
