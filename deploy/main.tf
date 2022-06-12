@@ -72,7 +72,7 @@ resource "aws_ecs_service" "test-service" {
 
 resource "aws_lb_target_group" "test-service-target-group" {
   name     = var.project-name
-  port     = 80
+  port     = 3000
   protocol = "HTTP"
   vpc_id   = var.vpc-id
 
