@@ -19,8 +19,6 @@ resource "aws_lb" "test-load-balancer" {
   subnets            = []
 
   enable_deletion_protection = false
-
-  condition {}
 }
 
 resource "aws_lb_listener_rule" "test-service-lb-listener-rule" {
@@ -29,6 +27,8 @@ resource "aws_lb_listener_rule" "test-service-lb-listener-rule" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.test-service-target-group.arn
   }
+
+  condition {}
 }
 
 resource "aws_ecs_task_definition" "test-task-definition" {
