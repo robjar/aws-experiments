@@ -2,6 +2,11 @@ provider "aws" {
     region = "us-east-1"
 }
 
+variable "project-name" {
+  type = string
+  default = "project-name-default-name"
+}
+
 resource "aws_ecs_task_definition" "test-task-definition" {
   container_definitions = jsonencode(
     [
