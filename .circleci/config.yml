@@ -27,6 +27,7 @@ jobs:
           root: ~/repo
           paths:
             - src
+            - deploy
             - Dockerfile
   build-and-push-docker-image:
     <<: *defaults
@@ -59,3 +60,7 @@ workflows:
           context: AWS
           requires:
             - build
+      - terraform/apply:
+          - attach_workspace: true
+          - path: /deploy
+
