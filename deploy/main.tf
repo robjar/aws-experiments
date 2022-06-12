@@ -23,7 +23,6 @@ resource "aws_ecs_task_definition" "test-task-definition" {
             containerPort = 3000
           },
         ]
-        logConfiguration = {}
       }
     ]
   )
