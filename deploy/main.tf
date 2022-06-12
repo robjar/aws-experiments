@@ -18,7 +18,9 @@ resource "aws_lb" "test-load-balancer" {
   security_groups    = []
   subnets            = []
 
-  enable_deletion_protection = true
+  enable_deletion_protection = false
+
+  condition {}
 }
 
 resource "aws_lb_listener_rule" "test-service-lb-listener-rule" {
