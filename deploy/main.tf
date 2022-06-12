@@ -11,6 +11,24 @@ variable "vpc-id" {
   type = string
 }
 
+resource "aws_lb" "test-load-balancer" {
+  name               = "test-load-balancer"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = []
+  subnets            = []
+
+  enable_deletion_protection = true
+}
+
+resource "aws_lb_listener_rule" "test-service-lb-listener-rule" {
+  listener_arn = aws_lb.test-load-balancer.arn
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.test-service-target-group.arn
+  }
+}
+
 resource "aws_ecs_task_definition" "test-task-definition" {
   container_definitions = jsonencode(
     [
