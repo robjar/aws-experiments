@@ -58,6 +58,7 @@ workflows:
           requires:
             - build
       - terraform/apply:
+          context: AWS
           attach-workspace: true
           path: ./deploy
           requires:
