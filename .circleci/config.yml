@@ -60,4 +60,6 @@ workflows:
       - terraform/apply:
           attach-workspace: true
           path: ./deploy
+          requires:
+            - build
 
