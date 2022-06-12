@@ -53,14 +53,11 @@ workflows:
   test-tf:
     jobs:
       - build
-#       - terraform/apply:
-#           checkout: true
-#           path: ./deploy
       - build-and-push-docker-image:
           context: AWS
           requires:
             - build
       - terraform/apply:
           attach-workspace: true
-          path: /deploy
+          path: ./deploy
 
