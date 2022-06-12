@@ -64,7 +64,7 @@ resource "aws_ecs_service" "test-service" {
   task_definition                    = "${aws_ecs_task_definition.test-task-definition.id}:${aws_ecs_task_definition.test-task-definition.revision}"
 
   load_balancer {
-    container_name   = var.project-name
+    container_name   = "${var.project-name}-container"
     container_port   = 3000
     target_group_arn = aws_lb_target_group.test-service-target-group.arn
   }
