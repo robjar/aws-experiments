@@ -45,6 +45,7 @@ resource "aws_ecs_task_definition" "test-task-definition" {
 
         portMappings = [
           {
+            hostPort = 80
             containerPort = 3000
           },
         ]
@@ -65,14 +66,14 @@ resource "aws_ecs_service" "test-service" {
 
   load_balancer {
     container_name   = var.project-name
-    container_port   = 3000
+    container_port   = 80
     target_group_arn = aws_lb_target_group.test-service-target-group.arn
   }
 }
 
 resource "aws_lb_target_group" "test-service-target-group" {
   name     = var.project-name
-  port     = 3000
+  port     = 80
   protocol = "HTTP"
   vpc_id   = var.vpc-id
 
