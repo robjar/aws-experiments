@@ -8,7 +8,7 @@ resource "aws_ecs_task_definition" "test-task-definition" {
       {
         cpu               = 128
         essential         = true
-        image             = 553652254709.dkr.ecr.us-east-1.amazonaws.com/test:latest
+        image             = "553652254709.dkr.ecr.us-east-1.amazonaws.com/test:latest"
         memory            = 2048
         memoryReservation = 256
         name              = var.project-name
