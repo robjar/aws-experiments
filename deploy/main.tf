@@ -21,14 +21,15 @@ resource "aws_lb" "test-load-balancer" {
   enable_deletion_protection = false
 }
 
-resource "aws_lb_listener_rule" "test-service-lb-listener-rule" {
-  listener_arn = aws_lb.test-load-balancer.arn
-  action {
+resource "aws_lb_listener" "test-lb-listener" {
+  load_balancer_arn = aws_lb.test-load-balancer.arn
+  port              = "80"
+  protocol          = "HTTP"
+
+  default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.test-service-target-group.arn
   }
-
-  condition {}
 }
 
 resource "aws_ecs_task_definition" "test-task-definition" {
