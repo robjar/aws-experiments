@@ -15,7 +15,7 @@ resource "aws_lb" "test-load-balancer" {
   name               = "test-load-balancer"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = ["sg-0916376864a44675e"]
+  security_groups    = ["sg-02cf79bdb672feda9"]
   subnets            = ["subnet-fc1b06b1", "subnet-c93c7296", "subnet-24ab3a15"]
 
   enable_deletion_protection = false
@@ -41,18 +41,17 @@ resource "aws_ecs_task_definition" "test-task-definition" {
         image             = "553652254709.dkr.ecr.us-east-1.amazonaws.com/test:latest"
         memory            = 2048
         memoryReservation = 256
-        name              = var.project-name
+        name              = "${var.project-name}-container"
 
         portMappings = [
           {
-            hostPort = 80
             containerPort = 3000
           },
         ]
       }
     ]
   )
-  family        = "${var.project-name}-task"
+  family        = "${var.project-name}-task-family"
   task_role_arn = ""
 }
 
@@ -61,12 +60,12 @@ resource "aws_ecs_service" "test-service" {
   deployment_maximum_percent         = 200
   deployment_minimum_healthy_percent = 75
   desired_count                      = 2
-  name                               = "${var.project-name}-srv"
+  name                               = "${var.project-name}-ecs-service"
   task_definition                    = "${aws_ecs_task_definition.test-task-definition.id}:${aws_ecs_task_definition.test-task-definition.revision}"
 
   load_balancer {
     container_name   = var.project-name
-    container_port   = 80
+    container_port   = 3000
     target_group_arn = aws_lb_target_group.test-service-target-group.arn
   }
 }
