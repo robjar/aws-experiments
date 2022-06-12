@@ -7,6 +7,10 @@ variable "project-name" {
   default = "project-name-default-name"
 }
 
+variable "vpc-id" {
+  type = string
+}
+
 resource "aws_ecs_task_definition" "test-task-definition" {
   container_definitions = jsonencode(
     [
