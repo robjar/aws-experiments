@@ -16,7 +16,7 @@ resource "aws_lb" "test-load-balancer" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = ["sg-0916376864a44675e"]
-  subnets            = ["subnet-fc1b06b1", "subnet-c93c7296"]
+  subnets            = ["subnet-fc1b06b1", "subnet-c93c7296", "subnet-24ab3a15]
 
   enable_deletion_protection = false
 }
