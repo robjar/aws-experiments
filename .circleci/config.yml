@@ -46,7 +46,7 @@ jobs:
           checkout: false
           repo: test
           registry-id: AWS_ACCOUNT_ID
-          workspace-root: /home/circleci/repo
+          # workspace-root: /home/circleci/repo
       
 
 workflows:
