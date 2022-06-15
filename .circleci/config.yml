@@ -47,6 +47,7 @@ jobs:
           repo: test
           registry-id: AWS_ACCOUNT_ID
           # workspace-root: /home/circleci/repo
+          tag: latest,<< pipeline.number >>
       
 
 workflows:
